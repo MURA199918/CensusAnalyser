@@ -22,15 +22,16 @@ public class CensusAnalyser {
             Iterable<IndiaCensusCSV> csvIterable = () -> censusCSVIterator;
             int numofEntries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
             return numofEntries;
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
         }catch (IllegalStateException e){
             throw new CensusAnalyserException(e.getMessage(),
                     CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
-        }catch (Exception e){
+        }catch (RuntimeException e){
             throw new CensusAnalyserException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
+                    CensusAnalyserException.ExceptionType.INVALID_TYPE_PROBLEM);
         }
     }
 }
