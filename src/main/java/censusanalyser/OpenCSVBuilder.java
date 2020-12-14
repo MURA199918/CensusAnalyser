@@ -17,7 +17,7 @@ public class OpenCSVBuilder<E> implements ICSVBuilder {
             return csvToBean.iterator();
         }catch(IllegalStateException e){
             throw new CSVBuilderException(e.getMessage(),
-                    CensusAnalyserException.ExceptionType.UNABLE_TO_PARSE);
+                    CSVBuilderException.ExceptionType.UNABLE_TO_PARSE);
         }
     }
 }
