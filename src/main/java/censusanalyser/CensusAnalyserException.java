@@ -2,6 +2,9 @@ package censusanalyser;
 
 public class CensusAnalyserException extends Exception {
 
+    public CensusAnalyserException(String message, String name) {
+    }
+
     enum ExceptionType {
         CENSUS_FILE_PROBLEM, UNABLE_TO_PARSE, STATE_FILE_PROBLEM, RUN_TIME_EXCEPTION
     }
