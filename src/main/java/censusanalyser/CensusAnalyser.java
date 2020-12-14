@@ -87,6 +87,16 @@ public class CensusAnalyser {
         return sortedPopulationCensusJson;
     }
 
+    public String getPopulationdensitySortedCensusData() throws CensusAnalyserException{
+        if(censusCSVList == null || censusCSVList.size() == 0){
+            throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<IndiaCensusCSV> censusComparator = Comparator.comparing(census->census.densityPerSqKm);
+        this.sortCensusbyPopulationDensity(censusComparator);
+        String sortedPopulationDensityCensusJson = new Gson().toJson(censusCSVList);
+        return sortedPopulationDensityCensusJson;
+    }
+
     private void sortCensusbyState(Comparator<IndiaCensusCSV> censusComparator) {
         for(int i=0;i<censusCSVList.size()-1;i++){
             for(int j=0; j<censusCSVList.size()-1;j++){
@@ -114,6 +124,19 @@ public class CensusAnalyser {
     }
 
     private void sortCensusbyPopulation(Comparator<IndiaCensusCSV> censusComparator) {
+        for(int i=0;i<censusCSVList.size()-1;i++){
+            for(int j=0; j<censusCSVList.size()-1;j++){
+                IndiaCensusCSV census1 = censusCSVList.get(j);
+                IndiaCensusCSV census2 = censusCSVList.get(j+1);
+                if(censusComparator.compare(census1,census2)<0){
+                    censusCSVList.set(j, census2);
+                    censusCSVList.set(j+1, census1);
+                }
+            }
+        }
+    }
+
+    private void sortCensusbyPopulationDensity(Comparator<IndiaCensusCSV> censusComparator) {
         for(int i=0;i<censusCSVList.size()-1;i++){
             for(int j=0; j<censusCSVList.size()-1;j++){
                 IndiaCensusCSV census1 = censusCSVList.get(j);
