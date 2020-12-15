@@ -1,9 +1,6 @@
 package censusanalyser;
 
 import com.google.gson.Gson;
-import com.opencsv.bean.CsvToBean;
-import com.opencsv.bean.CsvToBeanBuilder;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
 
 import java.io.IOException;
 import java.io.Reader;

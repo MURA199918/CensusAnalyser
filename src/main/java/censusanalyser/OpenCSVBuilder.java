@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class OpenCSVBuilder<E> implements ICSVBuilder {
-
     @Override
     public Iterator<E> getCSVFileIterator(Reader reader, Class csvClass) throws CSVBuilderException {
         return this.getCSVBean(reader, csvClass).iterator();
